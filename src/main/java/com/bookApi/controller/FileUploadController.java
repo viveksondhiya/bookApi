@@ -10,5 +10,4 @@ public class FileUploadController {
     public ResponseEntity<String> uploadFile(){
         return ResponseEntity.ok("Working");
     }
-
 }

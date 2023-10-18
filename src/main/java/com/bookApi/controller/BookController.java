@@ -1,6 +1,5 @@
 package com.bookApi.controller;
 
-import ch.qos.logback.core.encoder.EchoEncoder;
 import com.bookApi.entities.Book;
 import com.bookApi.services.BookServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,22 +35,24 @@ public class BookController {
     }
 
     @PostMapping("/books")
-    public ResponseEntity<Book> addBook(@RequestBody Book book){
+    public ResponseEntity<String> addBook(@RequestBody Book book){
         Book b =null;
         try {
             b= this.bookServices.addBook(book);
-            System.out.println(b);
-            return ResponseEntity.of(Optional.of(b));
+
+           // return ResponseEntity.of(Optional.of(b));
+            return ResponseEntity.ok("Book Added into Database");
         }catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
     @DeleteMapping("/books/{bookId}")
-    public ResponseEntity<Void> deleteBook(@PathVariable("bookId") int bookId){
+    public ResponseEntity<String> deleteBook(@PathVariable("bookId") int bookId){
         try {
             this.bookServices.deleteBook(bookId);
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+          //  return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+            return ResponseEntity.ok("Book successfully Deleted");
         }catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -66,6 +67,5 @@ public class BookController {
         }catch (Exception e){
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-
     }
 }

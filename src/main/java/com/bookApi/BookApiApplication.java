@@ -8,7 +8,7 @@ public class BookApiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BookApiApplication.class, args);
-		System.out.println("Successfull up");
+		System.out.println("Successfully up");
 	}
 
 }
